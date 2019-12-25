@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Часы на java script</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../_/css/bootstrap.min.css">
+  </head>
+<body>
+<div class="container">
+    <h2>Часы</h2>
+    <hr>
+    <div id="clock">
+        <p id="day-week" class="h1">Monday</p>
+       <p id="date" class="h1">dd.mm.YYYY : HH.mm.ss</p>
+
+    </div>
+   </div>
+
+<script>
+
+const daysOfWeek = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+const date = document.getElementById('date')
+const dayWeeek = document.getElementById('day-week')
+
+const norm = v => v < 10 ? '0' + v : v;
+const normM = v => v + 1
+const normDw = v => v === 6 ? 0 : v - 1 
+
+function runClock() {
+   const d = new Date();
+
+   let st = `${norm(d.getDate())}.${norm(normM(d.getMonth()))}.${d.getUTCFullYear()}`
+       st += ` : ${norm(d.getHours())}:${norm(d.getMinutes())}:${norm(d.getSeconds())}`
+   
+      date.textContent = st;
+      dayWeeek.textContent = `${daysOfWeek[normDw(d.getDay())]}`
+      setTimeout(runClock, 1000)
+}
+runClock();
+
+
+
+</script>
+</body>
+</html>
+

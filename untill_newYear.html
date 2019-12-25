@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Until New year</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../_/css/bootstrap.min.css">
+  </head>
+<body>
+<div class="container">
+    <h2>До Нового года осталось:</h2>
+    <div id="new-year"  class="h4">
+      days, hours, minutes, seconds
+    </div>
+</div>
+
+<script>
+  const res = document.getElementById('new-year')
+   
+ const norm = v => v < 10 ? '0' + v : v;
+
+  function runClock() {
+    const now = new Date()
+          , newYear = new Date(now.getFullYear() + 1, 0, 1)
+          , nowTime = now.getTime()
+          , newYearTime = newYear.getTime()
+          , diff = newYearTime - nowTime 
+          , days =  ~~(diff / (60 * 60 * 24 * 1000)) 
+          , h =  23 - now.getHours() 
+           , m = 59 - now.getMinutes()
+           , s = 59 - now.getSeconds()
+
+       let st = '';
+       if(diff < 0) {
+         st += "Happy New Year"
+       } else {
+         st += `Remain ${days} days, ${norm(h)}:${norm(m)}:${norm(s)}`
+       }
+       res.textContent = st;
+
+       setTimeout(runClock, 1000)
+  }
+
+  runClock();
+
+
+
+
+
+</script>
+</body>
+</html>
+
